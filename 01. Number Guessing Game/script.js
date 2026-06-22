@@ -36,9 +36,6 @@ game.addEventListener('submit' , (e)=>{
 
     userInput.value = "";
 
-
-
-    console.log("Subbmited");
 })
 
 startGame.addEventListener('click' , ()=>{
