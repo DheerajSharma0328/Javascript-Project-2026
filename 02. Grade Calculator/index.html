@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="container">
+
+        <h1 id="gradecalc">Grade Calculator</h1>
+
+        <form id="gradecalcform">
+            <div>
+                <label for="sname">Student Name:</label>
+                <input type="text" id="sname" required>
+            </div>
+            <div>
+                <label for="rnumber">Registration Number:</label>
+                <input type="text" id="rnumber" required>
+            </div>
+            <div>
+                <label for="sm1">Subject 1 Marks:</label>
+                <input type="number" id="sm1" required min="0" max="100">
+            </div>
+            <div>
+                <label for="sm2">Subject 2 Marks</label>
+                <input type="number" id="sm2" required min="0" max="100">
+            </div>
+            <div>
+                <label for="sm3">Subject 3 Marks</label>
+                <input type="number" id="sm3" required min="0" max="100">
+            </div>
+            <div>
+                <label for="sm4">Subject 4 Marks</label>
+                <input type="number" id="sm4" required min="0" max="100">
+            </div>
+            <div>
+                <label for="sm5">Subject 5 Marks</label>
+                <input type="number" id="sm5" required min="0" max="100">
+            </div>
+
+            <div>
+                <button type="submit">Calculate Grade</button>
+                <button type="reset">Reset</button>
+            </div>
+        </form>
+    </div>
+
+
+</body>
+
+</html>
