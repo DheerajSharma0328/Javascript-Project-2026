@@ -7,6 +7,7 @@
 
 body{
     font-family: sans-serif;
+    
 }
 
 /* Main wrapper container */
@@ -148,7 +149,7 @@ body{
     align-items: center;
     max-width: 300px;
     max-height: 100px;
-    border: 2px solid rgb(204, 0, 255);
+    /* border: 2px solid rgb(204, 0, 255); */
     border-radius: 5px;
     
 }
@@ -169,12 +170,17 @@ body{
     
 }
 
+#current-balance-style{
+    background-color: rgba(128, 255, 0, 0.100);
+    border: 3px solid lawngreen;
+}
+
 #green-icon{
-    color: lawngreen;
+    color: chartreuse;
 }
 
 .current-balance{
-    color: lawngreen;
+    color: chartreuse;
     font-size: x-large;
     font-weight: 600;
 }
@@ -197,6 +203,11 @@ body{
     font-weight: 600;
 }
 
+#total-income-style{
+    border: 3px solid blue;
+    background-color: rgba(0, 0, 255, 0.100);
+}
+
 #blue-icon{
     color: blue;
 }
@@ -215,6 +226,11 @@ body{
 
 }
 
+#total-expense-style{
+    border: 3px solid red;
+    background-color: rgba(255, 0, 0, 0.100);
+}
+
 .total-expense{
     color: red;
     font-size: x-large;
@@ -230,6 +246,11 @@ body{
 .totol-transaction-text{
     font-size: smaller;
     font-weight: 600;
+}
+
+#totol-transaction-style{
+    border: 3px solid purple;
+    background-color: rgba(128, 0, 128, 0.100);
 }
 
 .totol-transaction{
