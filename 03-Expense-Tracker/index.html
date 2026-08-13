@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css" integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="style.css">
-
     <script src="./script.js" defer></script>
 </head>
 <body>
@@ -75,12 +74,14 @@
                         <i class="fa-solid fa-circle-user"></i>
                     </div>
                     <div class="name-email">
-                        <span>Dheeraj</span>
-                        <span>Dheeraj@gmail.com</span>
+                        <span>user</span>
+                        <span>user@gmail.com</span>
                     </div>
                 </footer>
 
             </aside>
+
+
             <!-- Main Dashboard Section-->
             <section class="dashboard">
 
@@ -91,7 +92,7 @@
 
                     <div class="greet">
                         <div class="greet-heading">
-                            <h1>Welcome back , Dheeraj</h1>
+                            <h1>Welcome back</h1>
                             <i class="fa-solid fa-hand-spock"></i>
                         </div>
                         <span>Here's What's happening with your finances today.</span>
@@ -105,7 +106,7 @@
                     <article class="balance" id="current-balance-style">
                         <div class="balance-amount" >
                             <span class="current-balance-text">Current Balance</span>
-                            <span class="current-balance">25000</span>
+                            <span class="current-balance">0</span>
                             <span class="current-balance-subtext">Income-Expense</span>
                         </div>
                         <div class="balance-amount-icon" >
@@ -116,7 +117,7 @@
                     <article class="balance" id="total-income-style">
                         <div class="balance-amount">
                             <span class="total-income-text">Total Income</span>
-                            <span class="total-income">40000</span>
+                            <span class="total-income">0</span>
                             <span class="current-balance-subtext">This Months</span>
                         </div>
                         <div class="balance-amount-icon">
@@ -127,7 +128,7 @@
                     <article class="balance" id="total-expense-style">
                         <div class="balance-amount">
                             <span class="total-expense-text">Total Expense</span>
-                            <span class="total-expense">15000</span>
+                            <span class="total-expense">0</span>
                             <span class="current-balance-subtext">This Month</span>
                         </div>
                         <div class="balance-amount-icon">
@@ -138,7 +139,7 @@
                     <article class="balance" id="totol-transaction-style">
                         <div class="balance-amount">
                             <span class="totol-transaction-text">Total Transaction</span>
-                            <span class="totol-transaction">25</span>
+                            <span class="totol-transaction">0</span>
                             <span class="current-balance-subtext">This Month</span>
                         </div>
                         <div class="balance-amount-icon">
@@ -150,84 +151,209 @@
 
                 <div class="dashboard-summary">
 
-                    <!-- Add Transaction Form -->
-                    <form class="add-transaction">
+                    <!-- Add Transaction Form and Category -->
 
-                        <div class="add-transaction-heading">
-                            <div class="add-transaction-heading-icon">
-                                <i class="fa-solid fa-file-circle-plus"></i>
-                            </div>
-                            <span>Add Transaction</span>
-                        </div>
+                    <div class="add-transaction-and-categories">
 
-                        <div class="title-amount">
-                            <div class="title">
-                                <label for="title-input" class="label">Title</label>
-                                <input type="text" id="title-input" name="title">
-                            </div>
-                            <div class="amount">
-                                <label for="amount-input" class="label">Amount</label>
-                                <input type="number" id="amount-input" name="amount">
-                            </div>
-                        </div>
-
-                        <div class="category-type">
-                            <div class="category">
-                                <label for="category-input" class="label">Category</label>
-                                <select id="category-input" class="list">
-                                    <option>Food</option>
-                                    <option>Travel</option>
-                                    <option>Shopping</option>
-                                    <option>Bills</option>
-                                    <option>Entertainments</option>
-                                    <option>Other</option>
-                                </select>
-                            </div>
-
-                            <div class="type">
-                                <label class="label">Type</label>
-                                <div class="type-input">
-                                    <input type="radio" name="transaction-type"> Income
-                                    <input type="radio" name="transaction-type"> Expense
+                        <!-- Add Transaction Form -->
+                        <form class="add-transaction">
+    
+                            <div class="add-transaction-heading">
+                                <div class="add-transaction-heading-icon">
+                                    <i class="fa-solid fa-file-circle-plus"></i>
                                 </div>
-                                
+                                <span>Add Transaction</span>
+                            </div>
+    
+                            <div class="title-amount">
+                                <div class="title">
+                                    <label for="title-input" class="label">Title</label>
+                                    <input type="text" id="title-input" name="title">
+                                </div>
+                                <div class="amount">
+                                    <label for="amount-input" class="label">Amount</label>
+                                    <input type="number" id="amount-input" name="amount">
+                                </div>
+                            </div>
+    
+                            <div class="category-type">
+                                <div class="category">
+                                    <label for="category-input" class="label">Category</label>
+                                    <select id="category-input" class="list">
+                                        <option>Food</option>
+                                        <option>Travel</option>
+                                        <option>Shopping</option>
+                                        <option>Bills</option>
+                                        <option>Entertainments</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+    
+                                <div class="type">
+                                    <label class="label">Type</label>
+                                    <div class="type-input">
+                                        <input type="radio" name="transaction-type"> Income
+                                        <input type="radio" name="transaction-type"> Expense
+                                    </div>
+                                    
+                                </div>
+    
+                            </div>
+                            <div class="date">
+                                <label for="date-input" class="label">Date</label>
+                                <!-- <i class="fa-solid fa-calendar"></i> -->
+                                <input type="date" class="date-input">
+                            </div>
+    
+                            <button type="submit" class="add-transaction-submit">Add Transaction</button>
+    
+                        </form>
+
+                        
+                         <!-- Categories Dashboard -->
+                        <div class="catgories">
+                            <div class="category-heading">
+                                <h2>Categories</h2>
                             </div>
 
+                            <div class="category-list">
+
+                                <div class="food grid-style">
+                                    <div class="food-icon">
+                                        <i class="fa-solid fa-pizza-slice"></i>
+                                    </div>
+                                    <div class="title-food">
+                                        <span>Food</span>
+                                    </div>
+                                    <div class="food-spent">
+                                        <span>&#8377; <span class="food-spent-amount">0</span></span>
+                                    </div>
+                                    <div class="food-total-transaction">
+                                        <span class="food-total-transaction-number">0</span>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="travel grid-style">
+                                    <div class="travel-icon">
+                                        <i class="fa-solid fa-plane-departure"></i>
+                                    </div>
+                                    <div class="title-travel">
+                                        <span>Travel</span>
+                                    </div>
+                                    <div class="travel-spent">
+                                        <span class="travel-spent-amount">0</span>
+                                    </div>
+                                    <div class="travel-total-transaction">
+                                        <span class="travel-total-transaction-number">0</span>
+                                    </div>
+
+                                </div>
+                                <div class="shopping grid-style">
+                                    <div class="shopping-icon">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </div>
+                                    <div class="title-shopping">
+                                        <span>Shopping</span>
+                                    </div>
+                                    <div class="shopping-spent">
+                                        <span class="shopping-spent-amount">0</span>
+                                    </div>
+                                    <div class="shopping-total-transaction">
+                                        <span class="shopping-total-transaction-number">0</span>
+                                    </div>
+
+                                </div>
+                                <div class="bills grid-style">
+                                    <div class="icon">
+                                        <i class="fa-solid fa-receipt"></i>
+                                    </div>
+                                    <div class="title-bills">
+                                        <span>Bills</span>
+                                    </div>
+                                    <div class="bills-spent">
+                                       <span class="bills-spent-amount">0</span>
+                                    </div>
+                                    <div class="bills-total-transaction">
+                                        <span class="bills-total-transaction-number">0</span>
+                                    </div>
+
+                                </div>
+                                <div class="entertainment grid-style">
+                                    <div class="entertainment-icon">
+                                        <i class="fa-solid fa-tv"></i>
+                                    </div>
+                                    <div class="title-entertainment">
+                                        <span>Entertainment</span>
+                                    </div>
+                                    <div class="entertainment-spent">
+                                        <span class="entertainment-spent-amount">0</span>
+                                    </div>
+                                    <div class="entertainment-total-transaction">
+                                        <span class="entertainment-total-transaction-number">0</span>
+                                    </div>
+
+                                </div>
+                                <div class="other grid-style">
+                                    <div class="other-icon">
+                                        <i class="fa-solid fa-box-open"></i>
+                                    </div>
+                                    <div class="title-other">
+                                        <span>Other</span>
+                                    </div>
+                                    <div class="other-spent">
+                                        <span>&#8377; <span class="other-spent-amount">0</span></span>
+                                    </div>
+                                    <div class="other-total-transaction">
+                                         <span class="other-total-transaction-number">0</span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+    
                         </div>
-                        <div class="date">
-                            <label for="date-input" class="label">Date</label>
-                            <!-- <i class="fa-solid fa-calendar"></i> -->
-                            <input type="date" class="date-input">
-                        </div>
 
-                        <button type="submit" class="add-transaction-submit">Add Transaction</button>
+                    </div>
 
-                    </form>
 
-                    <!-- Recent transaction Dashborad -->
+                    <!-- Recent transaction Dashborad-->
+
                     <div class="recent-transaction">
 
-                        <div class="recent-transaction-header">
-                            <h2>Recent Transaction</h2>
-                            <i class="fa-solid fa-list"></i>
-                        </div>
+                            <div class="recent-transaction-header">
+                                <i class="fa-solid fa-list"></i>
+                                <h2>Recent Transaction</h2>
+                            </div>
+
+                            <div class="transaction-list-heading">
+                                <div>ID</div>
+                                <div>Title</div>
+                                <div>Category</div>
+                                <div>Amount</div>
+                                <div>Type</div>
+                                <div>Date</div>
+                                
+                            </div>
+                            <div class="transaction-list">
+
+                            </div>
+                            
+                            
                         
-                        <button>View All Transaction</button>
-                    </div>
-
-                    <!-- Enpense Summary Dashboard -->
-                    <div class="expense-summary">
-                        <h2>Expense Summary by Category</h2>
-                        <button>View full Report</button>
 
                     </div>
-                    <!-- Categories Dashboard -->
-                    <div class="catgories">
-                        <h2>Categories</h2>
-                        <button>View All Categories</button>
 
-                    </div>
+
+                    
+
+
                 </div>
+                
+                
+
+
 
             </section>
         </div>
