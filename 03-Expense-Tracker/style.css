@@ -19,7 +19,9 @@ body{
 /* Container which hold the main code */
 .container{
     display: flex;
-    min-height: 100vh;
+    height: 100vh;
+    min-height: 0;
+    overflow: hidden;
 
     
 }
@@ -99,6 +101,8 @@ body{
     display: grid;
     grid-template-rows: 80px 130px 1fr;
     min-width: 0;
+    min-height: 0;
+    height: 100%;
 }
 
 /* Welcome dashboard header */
@@ -251,6 +255,8 @@ body{
     grid-template-columns: 1fr 2fr;
     gap: 10px;
     padding: 10px;
+    min-height: 0;
+    overflow: hidden;
 }
 
 /* Add Transaction Form and Category */
@@ -258,6 +264,7 @@ body{
     display: grid;
     grid-template-rows: 1fr 1fr;
     gap: 10px;
+    min-height: 0;
 }
 
 .catgories{
@@ -270,7 +277,7 @@ body{
 
 .category-list{
     display: grid;
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-rows: repeat(8, 1fr);
     font-weight: 600;
     align-items: center;
 }
@@ -291,6 +298,7 @@ body{
     padding: 10px;
     gap: 15px;
     min-height: 0;    
+    overflow: hidden;
 }
 
 .recent-transaction-header{
@@ -299,26 +307,37 @@ body{
     gap: 10px;  
 }
 
-.transaction-list-heading{
-    display: grid;
-    grid-template-columns: 0.5fr 1.5fr 1.5fr 2fr 0.5fr 1fr;
+ .transaction-list-heading{
     font-weight: 600;
-    gap: 10px;
-    border-bottom: 2px solid gray;
     padding: 5px;    
+} 
+
+.clear-all-button{
+    color: red;
+    width: 100px;
+    height: 30px;
+    font-size: medium;
+    border-radius: 5px;
+    font-weight: 600;
+    background-color: antiquewhite;
+    
 }
 
 .transaction-list{
-    overflow-y: scroll;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
     scrollbar-width: none;
-
+    
 }
 
 .transaction-list-heading,
 .transaction-row {
     display: grid;
-    grid-template-columns: 0.5fr 1.5fr 1.5fr 2fr 0.5fr 1fr;
+    grid-template-columns: 0.5fr 1.5fr 1.5fr 1.5fr 1fr 1fr 1fr;
     gap: 10px;
+    border-bottom: 2px solid gray;
+    padding: 5px;
 }
 
 
@@ -379,6 +398,7 @@ body{
     border-radius: 5px;
     min-height: 30px;
     padding-left: 5px;
+    
 }
 
 

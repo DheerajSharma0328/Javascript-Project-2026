@@ -179,21 +179,24 @@
                             <div class="category-type">
                                 <div class="category">
                                     <label for="category-input" class="label">Category</label>
-                                    <select id="category-input" class="list">
+                                    <select id="category-input" class="list" name="category-input-value" required>
+                                        <option value=""  selected disabled>Select</option>
                                         <option>Food</option>
                                         <option>Travel</option>
                                         <option>Shopping</option>
                                         <option>Bills</option>
-                                        <option>Entertainments</option>
+                                        <option>Entertainment</option>
+                                        <option>Salary</option>
+                                        <option>FreeLancing</option>
                                         <option>Other</option>
                                     </select>
                                 </div>
     
                                 <div class="type">
                                     <label class="label">Type</label>
-                                    <div class="type-input">
-                                        <input type="radio" name="transaction-type"> Income
-                                        <input type="radio" name="transaction-type"> Expense
+                                    <div class="type-input" >
+                                        <input type="radio" name="type-input" value="income" required> Income
+                                        <input type="radio" name="type-input" value="expense"> Expense
                                     </div>
                                     
                                 </div>
@@ -202,7 +205,7 @@
                             <div class="date">
                                 <label for="date-input" class="label">Date</label>
                                 <!-- <i class="fa-solid fa-calendar"></i> -->
-                                <input type="date" class="date-input">
+                                <input type="date" class="date-input" name="date-input-value">
                             </div>
     
                             <button type="submit" class="add-transaction-submit">Add Transaction</button>
@@ -307,6 +310,37 @@
                                     </div>
 
                                 </div>
+
+                                <div class="salary grid-style">
+                                    <div class="salary-icon">
+                                        <i class="fa-solid fa-money-bill"></i>
+                                    </div>
+                                    <div class="title-salary">
+                                        <span>Salary</span>
+                                    </div>
+                                    <div class="salary-spent">
+                                        <span>&#8377; <span class="salary-spent-amount">0</span></span>
+                                    </div>
+                                    <div class="salary-total-transaction">
+                                         <span class="salary-total-transaction-number">0</span>
+                                    </div>
+
+                                </div>
+                                <div class="freelancing grid-style">
+                                    <div class="freelancing-icon">
+                                        <i class="fa-brands fa-square-upwork"></i>
+                                    </div>
+                                    <div class="title-freelancing">
+                                        <span>FreeLancing</span>
+                                    </div>
+                                    <div class="freelancing-spent">
+                                        <span>&#8377; <span class="freelancing-spent-amount">0</span></span>
+                                    </div>
+                                    <div class="freelancing-total-transaction">
+                                         <span class="freelancing-total-transaction-number">0</span>
+                                    </div>
+
+                                </div>
                                 <div class="other grid-style">
                                     <div class="other-icon">
                                         <i class="fa-solid fa-box-open"></i>
@@ -337,6 +371,9 @@
                             <div class="recent-transaction-header">
                                 <i class="fa-solid fa-list"></i>
                                 <h2>Recent Transaction</h2>
+                                <div class="clear-all">
+                                    <button class="clear-all-button">ClearAll</button>
+                                </div>
                             </div>
 
                             <div class="transaction-list-heading">
@@ -346,6 +383,7 @@
                                 <div>Amount</div>
                                 <div>Type</div>
                                 <div>Date</div>
+                                <div>Edit</div>
                                 
                             </div>
                             <div class="transaction-list">
