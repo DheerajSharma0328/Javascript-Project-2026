@@ -97,6 +97,7 @@ function recentTransaction() {
         const row = document.createElement('div');
         row.classList.add('transaction-row');
 
+        /*
         row.innerHTML = `
         <div>${index + 1}</div>
         <div>${recentTransactionData.title}</div>
@@ -110,6 +111,47 @@ function recentTransaction() {
         <option>Edit</option></select>
         
         `;
+        */
+
+        row.innerHTML = `
+    <div class="transaction-id">
+        <span>ID:</span>
+        <span>${index + 1}</span>
+    </div>
+
+    <div class="transaction-title">
+        <span>Title:</span>
+        <span>${recentTransactionData.title}</span>
+    </div>
+
+    <div class="transaction-category">
+        <span>Category:</span>
+        <span>${recentTransactionData.category}</span>
+    </div>
+
+    <div class="transaction-amount">
+        <span>Amount:</span>
+        <span>₹${recentTransactionData.amount}</span>
+    </div>
+
+    <div class="transaction-type">
+        <span>Type:</span>
+        <span>${recentTransactionData.type}</span>
+    </div>
+
+    <div class="transaction-date">
+        <span>Date:</span>
+        <span>${recentTransactionData.date}</span>
+    </div>
+
+    <div class="transaction-actions">
+        <select class="modify-transaction">
+            <option value="" selected disabled>Modify</option>
+            <option value="delete">Delete</option>
+            <option value="edit">Edit</option>
+        </select>
+    </div>
+`;
 
         transactionList.appendChild(row)
     })
