@@ -153,7 +153,7 @@ recentTransactionClearButton.addEventListener('click', function (event) {
     balanceData.transactions = 0;
 
     Object.keys(categoryData).forEach(function (category) {
-z
+
         categoryData[category].amount = 0;
         categoryData[category].transactions = 0;
 
