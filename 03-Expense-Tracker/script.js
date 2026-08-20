@@ -97,50 +97,35 @@ function recentTransaction() {
         const row = document.createElement('div');
         row.classList.add('transaction-row');
 
-        /*
-        row.innerHTML = `
-        <div>${index + 1}</div>
-        <div>${recentTransactionData.title}</div>
-        <div>${recentTransactionData.category}</div>
-        <div>${recentTransactionData.amount}</div>
-        <div>${recentTransactionData.type}</div>
-        <div>${recentTransactionData.date}</div>
-        <select>
-        <option value="" class="edit-button"  selected disabled>Modify</option>
-        <option>Delete</option>
-        <option>Edit</option></select>
-        
-        `;
-        */
-
+       
         row.innerHTML = `
     <div class="transaction-id">
-        <span>ID:</span>
+        <span class="transaction-span">ID:</span>
         <span>${index + 1}</span>
     </div>
 
     <div class="transaction-title">
-        <span>Title:</span>
+        <span class="transaction-span">Title:</span>
         <span>${recentTransactionData.title}</span>
     </div>
 
     <div class="transaction-category">
-        <span>Category:</span>
+        <span class="transaction-span">Category:</span>
         <span>${recentTransactionData.category}</span>
     </div>
 
     <div class="transaction-amount">
-        <span>Amount:</span>
+        <span class="transaction-span">Amount:</span>
         <span>₹${recentTransactionData.amount}</span>
     </div>
 
     <div class="transaction-type">
-        <span>Type:</span>
+        <span class="transaction-span">Type:</span>
         <span>${recentTransactionData.type}</span>
     </div>
 
     <div class="transaction-date">
-        <span>Date:</span>
+        <span class="transaction-span">Date:</span>
         <span>${recentTransactionData.date}</span>
     </div>
 
@@ -168,7 +153,7 @@ recentTransactionClearButton.addEventListener('click', function (event) {
     balanceData.transactions = 0;
 
     Object.keys(categoryData).forEach(function (category) {
-
+z
         categoryData[category].amount = 0;
         categoryData[category].transactions = 0;
 

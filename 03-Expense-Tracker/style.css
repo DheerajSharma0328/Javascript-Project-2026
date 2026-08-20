@@ -340,6 +340,11 @@ body {
     padding: 5px;
 }
 
+.transaction-span{
+    display: none;
+}
+
+
 
 /* add-transaction */
 
@@ -541,6 +546,13 @@ body {
 
     flex-shrink: 0;
 }
+
+.transaction-span{
+    display: inline;
+}
+
+
+
 
 .transaction-list-heading{
     display: none;
