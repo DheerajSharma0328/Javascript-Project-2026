@@ -87,7 +87,7 @@ addTransaction.addEventListener('submit', function (event) {
     category(formData);
     
     balance(formData);
-    addTransaction.reset();
+    // addTransaction.reset();
 
 })
 
@@ -95,10 +95,12 @@ function recentTransaction() {
     transactionList.innerHTML = "";
     data.forEach((recentTransactionData, index) => {
         const row = document.createElement('div');
+        row.dataset.id = recentTransactionData.id; 
         row.classList.add('transaction-row');
 
        
         row.innerHTML = `
+
     <div class="transaction-id">
         <span class="transaction-span">ID:</span>
         <span>${index + 1}</span>
@@ -141,6 +143,62 @@ function recentTransaction() {
         transactionList.appendChild(row)
     })
 }
+
+transactionList.addEventListener('change' , (event) =>{
+    if(event.target.classList.contains('modify-transaction'))
+    {
+        if(event.target.value === 'delete')
+        {
+            const transactionRow = event.target.closest('.transaction-row');
+            const transactionID = transactionRow.dataset.id;
+            const transactionIndex = data.findIndex((transaction)=>{
+                return transaction.id === transactionID;
+            })
+            
+            if(transactionIndex === -1){
+                return;
+            }
+
+            const transaction = data[transactionIndex];
+            if (transaction.type === 'income') 
+                {
+
+                    balanceData.income -= transaction.amount;
+
+                    balanceData.balance -= transaction.amount;
+                }
+
+            if (transaction.type === 'expense') 
+                {
+
+                    balanceData.expense -= transaction.amount;
+
+                    balanceData.balance += transaction.amount;
+                }
+
+            // Update total transaction count
+                balanceData.transactions -= 1;
+
+
+            // Update category
+                categoryData[transaction.category].amount -= transaction.amount;
+
+                categoryData[transaction.category].transactions -= 1;
+
+            data.splice(transactionID , 1);
+            // Save updated balance data
+                saveBalance();
+
+            // Save updated category data
+                saveCategoryData();
+            localStorage.setItem('data' , JSON.stringify(data));
+            recentTransaction();
+            renderBalance();
+            renderCategory()
+        }
+        
+    }
+})
 
 
 
