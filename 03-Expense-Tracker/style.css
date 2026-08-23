@@ -440,6 +440,12 @@ body {
 
 }
 
+.type-input-radio{
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
 .list {
     height: 40px;
     font-size: large;
