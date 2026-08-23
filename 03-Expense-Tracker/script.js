@@ -1,3 +1,5 @@
+let editingTransactionId = null;
+
 const addTransaction = document.querySelector('.add-transaction');
 const transactionList = document.querySelector('.transaction-list');
 const recentTransactionClearButton = document.querySelector('.clear-all-button');
@@ -176,6 +178,8 @@ transactionList.addEventListener('change' , (event) =>{
                     balanceData.balance += transaction.amount;
                 }
 
+            
+
             // Update total transaction count
                 balanceData.transactions -= 1;
 
@@ -185,7 +189,7 @@ transactionList.addEventListener('change' , (event) =>{
 
                 categoryData[transaction.category].transactions -= 1;
 
-            data.splice(transactionID , 1);
+            data.splice(transactionIndex , 1);
             // Save updated balance data
                 saveBalance();
 
@@ -196,6 +200,21 @@ transactionList.addEventListener('change' , (event) =>{
             renderBalance();
             renderCategory()
         }
+
+        if(event.target.value === 'edit')
+            {
+                const transactionRow = event.target.closest('.transaction-row');
+                const transactionID = transactionRow.dataset.id;
+                const transaction = data.find((transaction) => {
+                    return transaction.id === transactionID;
+                });
+
+                if (!transaction) {
+                    return;
+                }
+
+                editingTransactionId = transactionID;
+            }
         
     }
 })
