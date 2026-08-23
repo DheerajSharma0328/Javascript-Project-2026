@@ -89,7 +89,7 @@ addTransaction.addEventListener('submit', function (event) {
 
         const transaction = data[transactionIndex];
 
-        
+
         // New values from form
         const newAmount =
             Number(formData.get('amount'));
@@ -260,6 +260,7 @@ function recentTransaction() {
             <option value="" selected disabled>Modify</option>
             <option value="delete">Delete</option>
             <option value="edit">Edit</option>
+            <option value="cancel">Cancel</option>
         </select>
     </div>
 `;
@@ -348,6 +349,14 @@ transactionList.addEventListener('change', (event) => {
 
             // Change button text
             addTransaction.querySelector('.add-transaction-submit').innerText = 'Update Transaction';
+        }
+
+        if (event.target.value === 'cancel') {
+            editingTransactionId = null;
+            addTransaction.querySelector('.add-transaction-submit').innerText = 'Add Transaction';
+            addTransaction.reset();
+            event.target.value = '';
+
         }
 
     }
