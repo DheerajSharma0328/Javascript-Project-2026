@@ -2,6 +2,10 @@ let editingTransactionId = null;
 
 const addTransaction = document.querySelector('.add-transaction');
 const transactionList = document.querySelector('.transaction-list');
+const titleInput = document.querySelector('#title-input');
+const amountInput = document.querySelector('#amount-input');
+const categoryInput = document.querySelector('#category-input');
+const dateInput = document.querySelector('.date-input');
 const recentTransactionClearButton = document.querySelector('.clear-all-button');
 const currentBalance = document.querySelector('.current-balance');
 const totalIncome = document.querySelector('.total-income');
@@ -13,7 +17,7 @@ const totolTransaction = document.querySelector('.totol-transaction');
 
 const storedData = localStorage.getItem('data');
 const balanceDataValue = localStorage.getItem('balanceData');
-const storedCategoryData =localStorage.getItem("categoryData");
+const storedCategoryData = localStorage.getItem("categoryData");
 
 const data = storedData ? JSON.parse(storedData) : [];
 const balanceData = balanceDataValue ? JSON.parse(balanceDataValue) : {
@@ -73,6 +77,124 @@ addTransaction.addEventListener('submit', function (event) {
 
     const formData = new FormData(addTransaction);
 
+    if (editingTransactionId !== null) {
+
+        const transactionIndex = data.findIndex((transaction) => {
+            return transaction.id === editingTransactionId;
+        });
+
+        if (transactionIndex === -1) {
+            return;
+        }
+
+        const transaction = data[transactionIndex];
+
+        
+        // New values from form
+        const newAmount =
+            Number(formData.get('amount'));
+
+        const newCategory =
+            formData.get('category-input-value');
+
+        const newType =
+            formData.get('type-input');
+
+
+        // Remove old balance
+        if (transaction.type === 'income') {
+
+            balanceData.income -= transaction.amount;
+
+            balanceData.balance -= transaction.amount;
+        }
+
+        if (transaction.type === 'expense') {
+
+            balanceData.expense -= transaction.amount;
+
+            balanceData.balance += transaction.amount;
+        }
+
+
+        // Remove old category
+        categoryData[transaction.category].amount -=
+            transaction.amount;
+
+        categoryData[transaction.category].transactions -= 1;
+
+
+        // Add new balance
+        if (newType === 'income') {
+
+            balanceData.income += newAmount;
+
+            balanceData.balance += newAmount;
+        }
+
+        if (newType === 'expense') {
+
+            balanceData.expense += newAmount;
+
+            balanceData.balance -= newAmount;
+        }
+
+
+        // Add new category
+        categoryData[newCategory].amount += newAmount;
+
+        categoryData[newCategory].transactions += 1;
+
+
+        // Update transaction
+        transaction.title =
+            formData.get('title');
+
+        transaction.amount =
+            newAmount;
+
+        transaction.category =
+            newCategory;
+
+        transaction.type =
+            newType;
+
+        transaction.date =
+            formData.get('date-input-value');
+
+
+        // Save
+        localStorage.setItem(
+            'data',
+            JSON.stringify(data)
+        );
+
+        saveBalance();
+
+        saveCategoryData();
+
+
+        // Render
+        recentTransaction();
+
+        renderBalance();
+
+        renderCategory();
+
+
+        // Return to ADD mode
+        editingTransactionId = null;
+
+        addTransaction.querySelector(
+            '.add-transaction-submit'
+        ).innerText = 'Add Transaction';
+
+        addTransaction.reset();
+
+        return;
+    }
+
+
     const transaction = {
         id: crypto.randomUUID(),
         title: formData.get('title'),
@@ -87,9 +209,9 @@ addTransaction.addEventListener('submit', function (event) {
     localStorage.setItem('data', JSON.stringify(data));
     recentTransaction();
     category(formData);
-    
+
     balance(formData);
-    // addTransaction.reset();
+    addTransaction.reset();
 
 })
 
@@ -97,10 +219,10 @@ function recentTransaction() {
     transactionList.innerHTML = "";
     data.forEach((recentTransactionData, index) => {
         const row = document.createElement('div');
-        row.dataset.id = recentTransactionData.id; 
+        row.dataset.id = recentTransactionData.id;
         row.classList.add('transaction-row');
 
-       
+
         row.innerHTML = `
 
     <div class="transaction-id">
@@ -146,76 +268,88 @@ function recentTransaction() {
     })
 }
 
-transactionList.addEventListener('change' , (event) =>{
-    if(event.target.classList.contains('modify-transaction'))
-    {
-        if(event.target.value === 'delete')
-        {
+transactionList.addEventListener('change', (event) => {
+    if (event.target.classList.contains('modify-transaction')) {
+        if (event.target.value === 'delete') {
             const transactionRow = event.target.closest('.transaction-row');
             const transactionID = transactionRow.dataset.id;
-            const transactionIndex = data.findIndex((transaction)=>{
+            const transactionIndex = data.findIndex((transaction) => {
                 return transaction.id === transactionID;
             })
-            
-            if(transactionIndex === -1){
+
+            if (transactionIndex === -1) {
                 return;
             }
 
             const transaction = data[transactionIndex];
-            if (transaction.type === 'income') 
-                {
+            if (transaction.type === 'income') {
 
-                    balanceData.income -= transaction.amount;
+                balanceData.income -= transaction.amount;
 
-                    balanceData.balance -= transaction.amount;
-                }
+                balanceData.balance -= transaction.amount;
+            }
 
-            if (transaction.type === 'expense') 
-                {
+            if (transaction.type === 'expense') {
 
-                    balanceData.expense -= transaction.amount;
+                balanceData.expense -= transaction.amount;
 
-                    balanceData.balance += transaction.amount;
-                }
+                balanceData.balance += transaction.amount;
+            }
 
-            
+
 
             // Update total transaction count
-                balanceData.transactions -= 1;
+            balanceData.transactions -= 1;
 
 
             // Update category
-                categoryData[transaction.category].amount -= transaction.amount;
+            categoryData[transaction.category].amount -= transaction.amount;
 
-                categoryData[transaction.category].transactions -= 1;
+            categoryData[transaction.category].transactions -= 1;
 
-            data.splice(transactionIndex , 1);
+            data.splice(transactionIndex, 1);
             // Save updated balance data
-                saveBalance();
+            saveBalance();
 
             // Save updated category data
-                saveCategoryData();
-            localStorage.setItem('data' , JSON.stringify(data));
+            saveCategoryData();
+            localStorage.setItem('data', JSON.stringify(data));
             recentTransaction();
             renderBalance();
             renderCategory()
         }
 
-        if(event.target.value === 'edit')
-            {
-                const transactionRow = event.target.closest('.transaction-row');
-                const transactionID = transactionRow.dataset.id;
-                const transaction = data.find((transaction) => {
-                    return transaction.id === transactionID;
-                });
+        if (event.target.value === 'edit') {
+            const transactionRow = event.target.closest('.transaction-row');
+            const transactionID = transactionRow.dataset.id;
 
-                if (!transaction) {
-                    return;
-                }
+            const transaction = data.find((transaction) => {
+                return transaction.id === transactionID;
+            });
 
-                editingTransactionId = transactionID;
+            if (!transaction) {
+                return;
             }
-        
+
+            editingTransactionId = transactionID;
+            // Put transaction data into form
+            titleInput.value = transaction.title;
+
+            amountInput.value = transaction.amount;
+
+            categoryInput.value = transaction.category;
+
+            dateInput.value = transaction.date;
+            // Select Income / Expense
+            const typeInput = document.querySelector(`input[name="type-input"][value="${transaction.type}"]`);
+
+            typeInput.checked = true;
+
+
+            // Change button text
+            addTransaction.querySelector('.add-transaction-submit').innerText = 'Update Transaction';
+        }
+
     }
 })
 
@@ -257,20 +391,20 @@ function balance(formData) {
 
     const amount = Number(formData.get('amount'));
     const type = formData.get('type-input');
-    
+
     if (type === 'income') {
-        
+
         balanceData.income += amount;
         balanceData.balance += amount;
-        
+
     }
-    
+
     if (type === 'expense') {
         balanceData.expense += amount;
         balanceData.balance -= amount;
-        
+
     }
-    
+
     balanceData.transactions += 1;
     saveBalance();
     renderBalance();
@@ -281,8 +415,7 @@ function saveBalance() {
     localStorage.setItem('balanceData', JSON.stringify(balanceData))
 }
 
-function category(formData)
-{
+function category(formData) {
     const amount = Number(formData.get('amount'));
     const category = formData.get('category-input-value');
 
@@ -296,7 +429,7 @@ function category(formData)
 
 function saveCategoryData() {
 
-    localStorage.setItem('categoryData',JSON.stringify(categoryData));
+    localStorage.setItem('categoryData', JSON.stringify(categoryData));
 
 }
 
